@@ -1,0 +1,168 @@
+* {
+	box-sizing: border-box;
+}
+$width: 70px;
+$height: 60px;
+
+html {
+	padding: 0;
+	margin: 0;
+	font-family: 'Open Sans', sans-serif;
+}
+
+body {
+	background-color: #DDD;
+	padding: 0;
+	margin: 0;
+}
+
+html, body {
+
+	width: $width * 35;
+	height: 100vh;
+}
+
+// ul {
+// 	list-style: none;
+// 	margin: 0;
+// 	padding: 0;
+
+// 	li {
+// 		background-color: rgba(#03B5AA, 0.5);
+// 	}
+// }
+
+.calendar-body {
+	padding-top: 80px;
+	position: relative;
+}
+
+.grid-stack {
+
+	& > .grid-stack-item {
+		padding: 0;
+		background-color: rgba(#03B5AA, 0.8);
+		border: 1px solid #FFF;
+		box-shadow: 0 2px 1px -1px #DDD;
+		width: $width;
+		min-width: $width;
+		
+		@for $i from 1 through 50 {
+			&[data-gs-width='#{$i}'] {
+				width: $width * $i;
+			}
+
+			&[data-gs-x='#{$i}'] {
+				left: $width * $i;
+			}
+
+			&[data-gs-min-width='#{$i}'] {
+				min-width: $width * $i;
+			}
+
+			&[data-gs-max-width='#{$i}'] {
+				max-width: $width * $i;
+			}
+		}
+
+		.grid-stack-item-content {
+			left: 0;
+			border-left: 10px solid #03B5AA;
+			right: 0;
+			input {
+				background-color: transparent;
+				border: 0;
+				width: 100%;
+				height: 100%;
+				color: #FFF;
+				padding: 8px 12px;
+				font-size: 1em;
+				font-weight: 300;
+			}
+		}
+	}
+}
+
+.calendar-bg {
+	display: flex;
+	flex-direction: row;
+	position: absolute;
+	width: auto;
+	left: 0;
+	top: 0;
+	.week {
+		width: $width * 7;
+		display: flex;
+		flex-direction: row;
+
+		& > div {
+			width: $width;
+			height: 100vh;
+			content: '';
+			background-color: #FFF;
+			border-right: 1px solid #EEE;
+		}
+
+		.day6 , .day7 {
+			background-color: #EEE;
+			background-image: repeating-linear-gradient(60deg, transparent, transparent 2px, rgba(255,255,255,.9) 2px, rgba(255,255,255,.9) 4px);
+		}
+	}
+}
+
+
+.calendar-heading {
+	display: flex;
+	flex-direction: column;
+	position: absolute;
+	top: 0;
+	left: 0;
+
+	.months {
+		display: flex;
+		flex-direction: row;
+		width: 100%;
+		.month {
+
+			padding: 10px;
+			font-size: 0.8em;
+			background-color: #FFF;
+			color: #03B5AA;
+			border-bottom: 1px solid #EEE;
+			border-right: 1px solid #EEE;
+
+			&.w-28 {
+				width: $width * 24;
+			}
+			&.w-11 {
+				width: $width * 11;
+			}
+		}
+	}
+
+	.weeks {
+
+	display: flex;
+	flex-direction: row;
+		width: 100%;
+	.week {
+		width: $width * 7;
+		display: flex;
+		flex-direction: row;
+
+		& > div {
+			width: $width;
+			padding: 10px;
+			content: '';
+			text-align: center;
+			font-size: 0.8em;
+			background-color: #FFF;
+			box-shadow: 0 2px 1px -1px #DDD;
+		}
+
+		.day7 {
+			border-right: 1px solid #EEE;
+		}
+	}
+}
+}
